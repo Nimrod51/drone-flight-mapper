@@ -1,4 +1,4 @@
-//Basemaps
+/* Create basemaps */
 var terrain = new L.StamenTileLayer("terrain");
 var OpenStreetMap_Mapnik = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   maxZoom: 19,
@@ -9,7 +9,7 @@ var OpenStreetMap_DE = L.tileLayer('https://{s}.tile.openstreetmap.de/tiles/osmd
   attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 });
 
-//Initial Map Setup
+/* Initial map setup*/
 var map = L.map('mapid', {
   drawControl: true,
   center: [51.962038, 7.625937],
@@ -19,16 +19,22 @@ var map = L.map('mapid', {
   layers: [terrain] // Default basemaplayer on startrup, can also give another layer here to show by default)
 });
 
+/* Initiate variable to store flight paths drawn by user*/
 var flightItems = new L.FeatureGroup();
-
 map.addLayer(flightItems);
+
+/* Add draw control to map */
 var drawControl = new L.Control.Draw({
+	draw: {
+		polygon: false,
+		marker: false
+	},
   edit: {
     featureGroup: flightItems
   }
 });
-map.addControl(drawControl);
 
+/* Store items in the 'flightItems' variable upon finishing */
 map.on(L.Draw.Event.CREATED, function(event) {
   var layer = event.layer;
 
@@ -36,12 +42,13 @@ map.on(L.Draw.Event.CREATED, function(event) {
 });
 
 
-
+/* Store all  basemaps in variable  */
 var baseLayers = {
   "Terrain": terrain,
   "OpenStreetMap_Mapnik": OpenStreetMap_Mapnik,
   "OpenStreetMap DE": OpenStreetMap_DE
 };
+
 /*
 var overlays = {
 	"Density": density
