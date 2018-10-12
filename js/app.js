@@ -1,4 +1,4 @@
-var const = new L.StamenTileLayer("terrain");
+const terrain = new L.StamenTileLayer("terrain");
 
 var map = L.map('mapid', {
 	center: [51.962038,7.625937], /*Default location */
