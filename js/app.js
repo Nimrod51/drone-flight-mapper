@@ -11,7 +11,6 @@ var OpenStreetMap_DE = L.tileLayer('https://{s}.tile.openstreetmap.de/tiles/osmd
 
 /* Initial map setup*/
 var map = L.map('mapid', {
-  drawControl: true,
   center: [51.962038, 7.625937],
   /*Default location */
   zoom: 15,
@@ -23,21 +22,27 @@ var map = L.map('mapid', {
 var flightItems = new L.FeatureGroup();
 map.addLayer(flightItems);
 
-/* Add draw control to map */
+
+// /* Add draw control to map */
 var drawControl = new L.Control.Draw({
 	draw: {
+		position: 'topleft',
 		polygon: false,
-		marker: false
+		marker: false,
+		polyline: true,
+		rectangle: false,
+		circle: false
 	},
   edit: {
     featureGroup: flightItems
   }
 });
+map.addControl(drawControl);
 
-/* Store items in the 'flightItems' variable upon finishing */
+
+// /* Store items in the 'flightItems' variable upon finishing */
 map.on(L.Draw.Event.CREATED, function(event) {
   var layer = event.layer;
-
   flightItems.addLayer(layer);
 });
 
