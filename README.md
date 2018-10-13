@@ -4,3 +4,6 @@ A frontend Web application to map and create flight plans built using Leaflet an
 # Installation
 1. Clone the repository
 2. Run npm install
+
+# Preview
+![Preview](https://i.imgur.com/UpO6NjS.png)
