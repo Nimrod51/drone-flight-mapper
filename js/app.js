@@ -45,20 +45,28 @@ map.addControl(drawControl);
 
 
 /* Store items in the 'flightItems' variable upon finishing */
-var count=0;
+var pathCount=0;
 map.on(L.Draw.Event.CREATED, function(event) {
+  pathCount++;
   var layer = event.layer;
+  layer.id=pathCount;
   flightItems.addLayer(layer);
-	ctrl.addOverlay(layer, count);
-	count+=1
+	ctrl.addOverlay(layer, "Flight Path " + pathCount);
+  e = $('<p> &#8226; Flight Path' + pathCount +  '</p>');
+	$('#sidebar').append( e );
+  eId="pathid" + pathCount;
+  e.attr('id', eId);
 });
 
 /* When user removes a layer AND saves changes then remove all layers from legend */
 map.on(L.Draw.Event.DELETED, function(event) {
-	layers = event.layers._layers
+	layers = event.layers._layers;
 	for (var layerIndex in layers) {
         ctrl.removeLayer(layers[layerIndex]);
-}
+        $('#sidebar').children("#pathid"+layers[layerIndex].id).remove();
+  }
+
+
 
 });
 
@@ -73,3 +81,11 @@ var baseLayers = {
 	};
 
 var ctrl = L.control.layers(baseLayers).addTo(map);
+
+
+/* Add sidebar to map*/
+var sidebar = L.control.sidebar('sidebar', {
+    position: 'left'
+});
+
+map.addControl(sidebar);

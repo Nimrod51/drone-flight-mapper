@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<title>Drone Flight Mapper</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel ="styleshet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/node_modules/font-awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" href="/node_modules/leaflet/dist/leaflet.css">
 	<link rel="stylesheet" href="/node_modules/leaflet-draw/dist/leaflet.draw.css">
-
-
-	<!--<link href="css/style.css" rel="stylesheet" type="text/css"> -->
+	<link rel="stylesheet" href="/node_modules/leaflet-sidebar/src/L.Control.Sidebar.css">
+	<link rel="stylesheet" href="css/style.css" type="text/css">
 	<!--script src="js/jquery-3.1.1.min.js"></script> -->
 	<style>
 		#mapid {
@@ -17,15 +18,57 @@
 		}
 	</style>
 </head>
+
 <body>
 
-<div id="mapid"></div> <!-- Must have 'height' in style argument -->
-<script src="/node_modules/jquery/dist/jquery.min.js"></script>
-<script src = "/node_modules/bootstrap/dist/js/bootstrap.min.js"> </script>
-<script src = "/node_modules/leaflet/dist/leaflet.js"> </script>
-<script src = "/node_modules/leaflet-draw/dist/leaflet.draw.js"> </script>
-<script type="text/javascript" src="http://maps.stamen.com/js/tile.stamen.js?v1.3.0"></script>
-<script src = "js/app.js"> </script> <!--Main Script -->
+	<body style="height:1500px">
 
-</body>
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="#">Drone Flight Mapper</a>
+				</div>
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="#">Home</a></li>
+					<li><a href="#">About</a></li>
+					<li><a href="#" onclick="sidebar.toggle()">List</a></li>
+					<!-- <i class="fa fa-list white"></i>&nbsp;&nbsp;Flight Plan List -->
+				</ul>
+			</div>
+		</nav>
+
+		<div class="container" style="margin-top:50px">
+			<div class="row">
+				<div class="col-md-4">
+					<h3>Pix4D Drone Flight Mapper</h3>
+					<p>Click on the line toolbar to create a flight path.</p>
+					<p>Use <b>List</b> above to view created flight paths</p>
+					<br />
+				</div>
+
+			</div>
+		</div>
+
+		<div id="sidebar">
+			<h3>Flight Paths</h3>
+			<p><b>The flight paths you create will be shown here.</b></p>
+		</div>
+
+
+		<div id="container">
+			<div id="mapid"></div>
+		</div>
+
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script src="/node_modules/leaflet/dist/leaflet.js"> </script>
+		<script src="/node_modules/leaflet-draw/dist/leaflet.draw.js"> </script>
+		<script src="/node_modules/leaflet-sidebar/src/L.Control.Sidebar.js"></script>
+		<script type="text/javascript" src="http://maps.stamen.com/js/tile.stamen.js?v1.3.0"></script>
+		<script src="js/app.js"> </script>
+		<!--Main Script -->
+
+	</body>
+
 </html>
