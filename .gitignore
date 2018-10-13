@@ -1,3 +1,2 @@
 # exclude directory keeping data
 node_modules/**
-Run.bat
