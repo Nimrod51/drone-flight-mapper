@@ -63,13 +63,26 @@ map.on(L.Draw.Event.CREATED, function(event) {
 
 /* User deletes a path layer:  Remove layer from legend and from sidebar */
 map.on(L.Draw.Event.DELETED, function(event) {
-	layers = event.layers._layers;
+	var layers = event.layers._layers;
 	for (var layerIndex in layers) {
         ctrl.removeLayer(layers[layerIndex]);
         $('#sidebar').children("#pathid"+layers[layerIndex].id).remove();
   }
-
 });
+
+/* User edits an existing path layer:  Update GEOJSON URI */
+map.on(L.Draw.Event.EDITED, function(event) {
+  var layers = event.layers._layers;
+  for (var layerIndex in layers) {
+        var layerid=layers[layerIndex].id
+        pathGeojson[layerid]=event.layers._layers[layerIndex].toGeoJSON();
+        var geojsonURI= "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(pathGeojson[event.layers._layers[layerIndex].id]));
+        var newURI='data:' + geojsonURI + ' download=flightPath' + layerid + '.geojson'
+        $('#sidebar').children("#pathid"+layers[layerIndex].id).children('a').attr('href',newURI.split(" ")[0])
+  }
+});
+
+
 /* Basemap options*/
 var baseLayers = {
 		"Grayscale": grayscale,
