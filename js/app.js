@@ -26,13 +26,13 @@ var flightItems = new L.FeatureGroup();
 map.addLayer(flightItems);
 
 
-// /* Add draw control to map */
+/* Add draw control to map */
 var drawControl = new L.Control.Draw({
 	draw: {
 		position: 'topleft',
+    polyline: true,
 		polygon: false,
 		marker: false,
-		polyline: true,
 		rectangle: false,
 		circle: false,
 		circlemarker: false
@@ -44,21 +44,24 @@ var drawControl = new L.Control.Draw({
 map.addControl(drawControl);
 
 
-/* Store items in the 'flightItems' variable upon finishing */
+/* User creates a new path: Store flight paths globally, add to legend and to sidebar*/
 var pathCount=0;
+var pathGeojson={};
 map.on(L.Draw.Event.CREATED, function(event) {
   pathCount++;
   var layer = event.layer;
+  pathGeojson[pathCount]=layer.toGeoJSON();
+  var geojsonURI= "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(pathGeojson[pathCount]));
   layer.id=pathCount;
   flightItems.addLayer(layer);
 	ctrl.addOverlay(layer, "Flight Path " + pathCount);
-  e = $('<p> &#8226; Flight Path' + pathCount +  '</p>');
+  e = $('<p> &#8226; Flight Path ' + pathCount + ' |'+'<a href="data:' + geojsonURI + '" download="flightPath' +pathCount + '.geojson"> Download as GeoJSON</a>' +'</p>'); 
 	$('#sidebar').append( e );
   eId="pathid" + pathCount;
   e.attr('id', eId);
 });
 
-/* When user removes a layer AND saves changes then remove all layers from legend */
+/* User deletes a path layer:  Remove layer from legend and from sidebar */
 map.on(L.Draw.Event.DELETED, function(event) {
 	layers = event.layers._layers;
 	for (var layerIndex in layers) {
@@ -66,10 +69,8 @@ map.on(L.Draw.Event.DELETED, function(event) {
         $('#sidebar').children("#pathid"+layers[layerIndex].id).remove();
   }
 
-
-
 });
-
+/* Basemap options*/
 var baseLayers = {
 		"Grayscale": grayscale,
 		"Streets": streets,
@@ -80,12 +81,15 @@ var baseLayers = {
 		"Light Map": light
 	};
 
-var ctrl = L.control.layers(baseLayers).addTo(map);
+/* Create collapsed leaflet control*/
+var ctrl = L.control.layers(baseLayers, null,
+  {collapsed: false}
+
+).addTo(map);
 
 
 /* Add sidebar to map*/
 var sidebar = L.control.sidebar('sidebar', {
     position: 'left'
 });
-
 map.addControl(sidebar);

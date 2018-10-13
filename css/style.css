@@ -1,3 +1,7 @@
-body {
-    font-family: "Lato", sans-serif;
+.leaflet-control-layers {
+  overflow: auto;
+}
+.leaflet-control-layers label {
+  font-weight: normal;
+  margin-bottom: 0px;
 }
