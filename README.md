@@ -3,7 +3,7 @@ A frontend Web application to map and create flight plans built using [Leaflet](
 
 ## Features
 * Draw flight paths on map as polylines
-* Stor/delete flight paths locally on client 
+* Store/delete flight paths locally on client 
 * Download created flight paths as [GeoJSON](http://geojson.org/) polylines
 
 ## Installation
