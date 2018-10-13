@@ -5,13 +5,12 @@
 	<title>Drone Flight Mapper</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" href="/node_modules/font-awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" href="/node_modules/leaflet/dist/leaflet.css">
 	<link rel="stylesheet" href="/node_modules/leaflet-draw/dist/leaflet.draw.css">
 	<link rel="stylesheet" href="/node_modules/leaflet-sidebar/src/L.Control.Sidebar.css">
 	<link rel="stylesheet" href="css/style.css" type="text/css">
-	<!--script src="js/jquery-3.1.1.min.js"></script> -->
 	<style>
 		#mapid {
 			height: 800px;
@@ -20,12 +19,7 @@
 </head>
 
 <body>
-
-	<body style="height:1500px">
-
-
-
-
+		<!-- Navigation Bar-->
 		<nav class="navbar navbar-inverse navbar-fixed-top">
 			<div class="container-fluid">
 				<div class="navbar-header">
@@ -33,25 +27,18 @@
 				</div>
 				<ul class="nav navbar-nav">
 					<li class="active"><a href="#">Home</a></li>
-					<li><a href="#exampleModal" data-toggle="modal" data-target="#exampleModal">About</a></li>
-					<li><a href="#" onclick="sidebar.toggle()">List</a></li>
-					<!-- <i class="fa fa-list white"></i>&nbsp;&nbsp;Flight Plan List -->
+					<li><a href="#aboutModal" data-toggle="modal" data-target="#aboutModal">About</a></li>
+					<li><a href="#" onclick="sidebar.toggle()"><span class="fa fa-list white"></span> List</a></span></li>
 				</ul>
 			</div>
 		</nav>
 
-
-
-
-
-
-
-
+		<!-- Intro container-->
 		<div class="container" style="margin-top:50px">
 			<div class="row">
 				<div class="col-md-4">
 					<h3>Pix4D Drone Flight Mapper</h3>
-					<p>Click on the line toolbar to create a flight path.</p>
+					<p>Click on the line toolbar to create a flight path. Double-click or click last point to finish line.</p>
 					<p>Use <b>List</b> above to view created flight paths</p>
 					<br />
 				</div>
@@ -59,50 +46,48 @@
 			</div>
 		</div>
 
+		<!-- Sidebar (Popup)-->
 		<div id="sidebar">
 			<h3>Flight Paths</h3>
 			<p><b>The flight paths you create will be shown here:</b></p>
 		</div>
 
-
+		<!-- Map container-->
 		<div id="container">
 			<div id="mapid"></div>
 		</div>
 
 
-	<!-- Modal -->
-	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel"><b>About</b></h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<p>
-						Created by Nimrod Gavish &copy;	2018
-					</p>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		<!-- 'About' Modal -->
+		<div class="modal fade" id="aboutModal" tabindex="-1" role="dialog" aria-labelledby="aboutModalLabel" aria-hidden="true" z-index="5000">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h3 class="modal-title" id="aboutModalLabel"><b>About</b></h3>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<p>
+							Created by Nimrod Gavish &copy; 2018
+						</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 
-
-
-
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+		<script src="/node_modules/jquery/dist/jquery.min.js"> </script>
+		<script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"> </script>
 		<script src="/node_modules/leaflet/dist/leaflet.js"> </script>
 		<script src="/node_modules/leaflet-draw/dist/leaflet.draw.js"> </script>
 		<script src="/node_modules/leaflet-sidebar/src/L.Control.Sidebar.js"></script>
 		<script type="text/javascript" src="http://maps.stamen.com/js/tile.stamen.js?v1.3.0"></script>
 		<script src="js/app.js"> </script>
-		<!--Main Script -->
 
 	</body>
 

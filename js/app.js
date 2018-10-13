@@ -18,7 +18,7 @@ var map = L.map('mapid', {
   /*Default location */
   zoom: 15,
   /*Default Zoom */
-  layers: [streets] // Default basemaplayer on startrup, can also give another layer here to show by default)
+  layers: [outdoors] // Default basemaplayer on startrup, can also give another layer here to show by default)
 });
 
 /* Initiate variable to store flight paths drawn by user*/
@@ -31,6 +31,12 @@ var drawControl = new L.Control.Draw({
 	draw: {
 		position: 'topleft',
     polyline: true,
+    toolbar: {
+      buttons: {
+        polyline: "Draw a new flight path"
+      }
+    },
+
 		polygon: false,
 		marker: false,
 		rectangle: false,
@@ -55,7 +61,7 @@ map.on(L.Draw.Event.CREATED, function(event) {
   layer.id=pathCount;
   flightItems.addLayer(layer);
 	ctrl.addOverlay(layer, "Flight Path " + pathCount);
-  e = $('<p> &#8226; Flight Path ' + pathCount + ' |'+'<a href="data:' + geojsonURI + '" download="flightPath' +pathCount + '.geojson"> Download as GeoJSON</a>' +'</p>'); 
+  e = $('<p> &#8226; Flight Path ' + pathCount + ' |'+'<a href="data:' + geojsonURI + '" download="flightPath' +pathCount + '.geojson"> Download as GeoJSON</a></p>' );
 	$('#sidebar').append( e );
   eId="pathid" + pathCount;
   e.attr('id', eId);
