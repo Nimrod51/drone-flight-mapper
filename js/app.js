@@ -31,12 +31,6 @@ var drawControl = new L.Control.Draw({
 	draw: {
 		position: 'topleft',
     polyline: true,
-    toolbar: {
-      buttons: {
-        polyline: "Draw a new flight path"
-      }
-    },
-
 		polygon: false,
 		marker: false,
 		rectangle: false,
