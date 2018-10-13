@@ -1,5 +1,5 @@
 # Drone-Flight-Mapper
-A frontend Web application to map and create flight plans built using Leaflet and Leaflet.Draw
+A frontend Web application to map and create flight plans built using [Leaflet](http://leafletjs.com) and [Leaflet Draw](https://github.com/Leaflet/Leaflet.draw). 
 
 # Installation
 1. Clone the repository
